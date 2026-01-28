@@ -1,4 +1,6 @@
 import { useState } from "react";
+import SelectInput from "./inputs/SelectInput";
+import TextInput from "./inputs/TextInput";
 
 const NoteForm = ({ notes, setNotes }) => {
   const [formData, setFormData] = useState({
@@ -48,51 +50,37 @@ const NoteForm = ({ notes, setNotes }) => {
       </button>
       {isFormVisible && (
         <form onSubmit={handleSubmit} className="mb-6">
-          <div className="mb-4">
-            <label htmlFor="title" className="block font-semibold">
-              หัวข้อ
-            </label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              className="w-full p-2 border rounded-lg"
-              value={formData.title}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="priority" className="block font-semibold">
-              Priority
-            </label>
-            <select
-              type="text"
-              name="priority"
-              className="w-full p-2 border rounded-lg"
-              value={formData.priority}
-              onChange={handleChange}
-            >
-              <option value="High">สูง</option>
-              <option value="Medium">กลาง</option>
-              <option value="Low">น้อย</option>
-            </select>
-          </div>
-          <div className="mb-4">
-            <label htmlFor="category" className="block font-semibold">
-              Category
-            </label>
-            <select
-              type="text"
-              name="category"
-              className="w-full p-2 border rounded-lg"
-              value={formData.category}
-              onChange={handleChange}
-            >
-              <option value="Work">งาน</option>
-              <option value="Peronal">บ้าน</option>
-              <option value="Ideas">คิด</option>
-            </select>
-          </div>
+          <TextInput
+            label="หัวข้อ"
+            id="title"
+            name="title"
+            className="w-full p-2 border rounded-lg"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+          <SelectInput
+            label="Priority"
+            name="priority"
+            value={formData.priority}
+            onChange={handleChange}
+            options={[
+              { value: "High", label: "High" },
+              { value: "Medium", label: "Medium" },
+              { value: "Low", label: "Low" },
+            ]}
+          />
+          <SelectInput
+            label="Category"
+            name="Category"
+            value={formData.Category}
+            onChange={handleChange}
+            options={[
+              { value: "Work", label: "Work" },
+              { value: "Pernoal", label: "Pernoal" },
+              { value: "Idea", label: "Idea" },
+            ]}
+          />
 
           <div className="mb-4">
             <label htmlFor="description" className="block font-semibold">
